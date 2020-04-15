@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Nzh.Allen.Repository.DBHeper
+namespace Nzh.Allen.Repository
 {
     public class PageDataView<T>
     {

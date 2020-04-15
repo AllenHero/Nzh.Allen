@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 
-namespace Nzh.Allen.Repository.DBHeper
+namespace Nzh.Allen.Repository
 {
     public class Common
     {
