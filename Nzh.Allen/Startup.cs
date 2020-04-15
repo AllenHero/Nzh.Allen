@@ -23,7 +23,6 @@ using Module = Autofac.Module;
 
 namespace Nzh.Allen
 {
-
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -41,19 +40,14 @@ namespace Nzh.Allen
 
             //内存缓存
             services.AddMemoryCache();
-            //redis缓存
-            //services.AddStackExchangeRedisCache(t =>
-            //{
-            //    t.Configuration = Configuration.GetValue<string>("Redis:Configuration");
-            //    t.InstanceName = Configuration.GetValue<string>("Redis:InstanceName");
-            //});
+
             services.AddDistributedMemoryCache();
 
             //配置session(session是根据上面cache来区分存储源地的)
             services.AddSession(opts =>
             {
                 opts.IdleTimeout = TimeSpan.FromMinutes(60); //设置Session闲置超时时间(有效时间周期)
-                opts.Cookie.Name = "zlweb_cookie";
+                opts.Cookie.Name = "Nzh.Allen_cookie";
                 opts.Cookie.HttpOnly = true;
 
             });
@@ -174,6 +168,7 @@ namespace Nzh.Allen
                 return _container;
             }
         }
+
         #endregion
 
         public class DateTimeConverter : JsonConverter<DateTime>
