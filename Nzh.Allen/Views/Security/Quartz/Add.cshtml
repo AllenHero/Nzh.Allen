@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
+}
+<style type="text/css">
+    .fr {
+        float: right;
+    }
+
+    .img-headshot {
+        width: 90px;
+        height: 90px;
+        position: absolute;
+        top: -30px;
+        border: medium none;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+</style>
+<form class="layui-form layui-form-pane ok-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">任务组</label>
+        <div class="layui-input-block">
+            <input type="text" name="JobGroup" placeholder="任务组" autocomplete="off" class="layui-input" lay-verify="required">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">任务名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="JobName" placeholder="任务名称" autocomplete="off" class="layui-input" lay-verify="required">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">Cron表达式</label>
+        <div class="layui-input-block">
+            <input type="text" name="CronExpress" placeholder="Cron表达式" autocomplete="off" class="layui-input" lay-verify="required">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">启动时间</label>
+        <div class="layui-input-block">
+            <input type="text" name="StarRunTime" id="starRunTimeId" placeholder="启动时间" autocomplete="off" class="layui-input" lay-verify="required">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">停止时间</label>
+        <div class="layui-input-block">
+            <input type="text" name="EndRunTime" id="endRunTimeId" placeholder="停止时间" autocomplete="off" class="layui-input" lay-verify="required">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">IJob实现</label>
+        <div class="layui-input-inline">
+            <input name="FileName" readonly id="FileName" placeholder="文件名称" value="" class="layui-input">
+        </div>
+        <div class="layui-input-inline layui-btn-container" style="width: auto;">
+            <button type="button" class="layui-btn layui-btn-primary" id="btnUpload">
+                <i class="layui-icon">&#xe67c;</i>上传文件
+            </button>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="add">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script>
+    layui.use(["form", "laydate", "okLayer", "okUtils", "upload", "layer"], function () {
+        let form = layui.form;
+        let laydate = layui.laydate;
+        let okLayer = layui.okLayer;
+        let okUtils = layui.okUtils;
+        let upload = layui.upload;
+        let layer = layui.layer;
+        let $ = layui.$;
+        laydate.render({ elem: "#starRunTimeId",type: 'datetime',format: 'yyyy-MM-dd HH:mm:ss' });
+        laydate.render({ elem: "#endRunTimeId",type: 'datetime',format: 'yyyy-MM-dd HH:mm:ss'});
+        upload.render({
+            elem: '#btnUpload',
+            url: '/Security/Quartz/ExportFile',
+            exts: 'dll',
+            acceptMime: 'dll',
+            done: function (res) {
+                if (res.code == 0) {
+                    $("#FileName").val(res.src);
+                }
+            }
+        });
+        form.on("submit(add)", function (data) {
+            okUtils.ajax("/Security/Quartz/Add", "post", data.field, true).done(function (response) {
+                okLayer.greenTickMsg(response.message, function () {
+                    parent.location.reload(); // 父页面刷新
+                    parent.layer.close(parent.layer.getFrameIndex(window.name));//先得到当前iframe层的索引 再执行关闭
+                });
+            }).fail(function (error) {
+                console.log(error)
+            });
+            return false;
+        });
+    });
+</script>
