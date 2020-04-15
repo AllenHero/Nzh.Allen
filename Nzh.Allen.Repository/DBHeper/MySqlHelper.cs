@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Nzh.Allen.Repository
 {
-    public class DbContext
+    public class MySqlHelper
     {
         public IConfiguration configuration { set; get; }
 
@@ -16,14 +16,6 @@ namespace Nzh.Allen.Repository
             var connection = new MySqlConnection(connectionString);
             connection.Open();
             return connection;
-
-            //var connection = new OracleConnection(connectionString);
-            //connection.Open();
-            //return connection;
-
-            //var connection = new SqlConnection(connectionString);
-            //connection.Open();
-            //return connection;
         }
     }
 }

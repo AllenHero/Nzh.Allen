@@ -136,7 +136,7 @@ namespace Nzh.Allen
 
             protected override void Load(ContainerBuilder builder)
             {
-                builder.RegisterType<DbContext>()
+                builder.RegisterType<MySqlHelper>()
                     .PropertiesAutowired()
                     .InstancePerDependency();
 

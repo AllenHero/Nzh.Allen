@@ -9,7 +9,7 @@ namespace Nzh.Allen.Repository
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class, new()
     {
-        public DbContext dbContext { set; get; }
+        public MySqlHelper dbContext { set; get; }
 
         public T GetById(int Id)
         {
