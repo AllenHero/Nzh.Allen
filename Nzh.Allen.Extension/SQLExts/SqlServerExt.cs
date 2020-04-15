@@ -532,7 +532,7 @@ namespace Nzh.Allen.Extension.SQLExts.SqlServerExt
             string sql = string.Format("SELECT {0} FROM [{1}] WITH(NOLOCK) {2} {3}", returnFields, sqls.TableName, where, orderBy);
             return conn.Query(sql, param, transaction, true, commandTimeout);
         }
->
+
         public static IEnumerable<T> GetByWhere<T>(this IDbConnection conn, string where = null, object param = null, string returnFields = null, string orderBy = null, IDbTransaction transaction = null, int? commandTimeout = null)
         {
             return GetByWhereBase<T>(conn, typeof(T), where, param, returnFields, orderBy, transaction, commandTimeout);
@@ -542,7 +542,7 @@ namespace Nzh.Allen.Extension.SQLExts.SqlServerExt
         {
             return GetByWhereBase<T>(conn, typeof(Table), where, param, returnFields, orderBy, transaction, commandTimeout);
         }
->
+
         public static DataTable GetDataTable(this IDbConnection conn, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null)
         {
             return DapperExtAllSQL.GetDataTableBase(conn, sql, param, transaction, commandTimeout);

@@ -610,7 +610,7 @@ namespace Nzh.Allen.Extension.SQLExts.MySQLExt
             string sql = string.Format("SELECT {0} FROM `{1}` {2} {3}", returnFields, sqls.TableName, where, orderBy);
             return conn.QueryFirstOrDefault<T>(sql, param, transaction, commandTimeout);
         }
->
+
         public static dynamic GetByWhereFirstDynamic<T>(this IDbConnection conn, string where = null, object param = null, string returnFields = null, string orderBy = null, IDbTransaction transaction = null, int? commandTimeout = null)
         {
             DapperExtSqls sqls = GetDapperExtSqls(typeof(T));
