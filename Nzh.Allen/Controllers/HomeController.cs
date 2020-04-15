@@ -15,7 +15,6 @@ namespace Nzh.Allen.Controllers
 {
     public class HomeController : BaseController
     {
-        public IDonationService DonationService { get; set; }
         public IWebHostEnvironment WebHostEnvironment { get; set; }
 
         public override ActionResult Index(int? id)
