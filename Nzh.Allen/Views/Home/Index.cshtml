@@ -1,6 +1,5 @@
-﻿@model Nzh.Allen.Model.WebModel
-@{
-    ViewBag.Title = Model.SiteName;
+﻿@{
+    ViewBag.Title = "Nzh.Allen";
 }
 <!-- 更换主体 Eg:orange_theme|blue_theme -->
 <div class="layui-layout layui-layout-admin okadmin blue_theme">
@@ -55,7 +54,7 @@
     <!--左侧导航区域-->
     <div class="layui-side layui-side-menu okadmin-bg-20222A ok-left">
         <div class="layui-side-scroll okadmin-side">
-            <div class="okadmin-logo">@Model.SiteName</div>
+            <div class="okadmin-logo">Nzh.Allen</div>
             <div class="user-photo">
                 <a class="img" title="我的头像">
                     <img src="@ViewBag.HeadIcon" class="userAvatar">
@@ -109,7 +108,7 @@
 
     <!--底部信息-->
     <div class="layui-footer okadmin-text-center">
-        @Model.CopyRight
+        Copyright © 2020 Nzh.Allen All Rights Reserved
     </div>
 </div>
 <div class="yy"></div>

@@ -18,7 +18,7 @@ namespace Nzh.Allen.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            return View(new WebModel().GetWebInfo());
+            return View();
         }
         [HttpGet]
         public ActionResult GetAuthCode()

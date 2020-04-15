@@ -21,7 +21,7 @@ namespace Nzh.Allen.Controllers
         {
             ViewBag.Account = Operator == null ? "" : Operator.Account;
             ViewBag.HeadIcon = Operator == null ? "" : Operator.HeadIcon;
-            return View(new WebModel().GetWebInfo());
+            return View();
         }
 
         public ActionResult Main()
