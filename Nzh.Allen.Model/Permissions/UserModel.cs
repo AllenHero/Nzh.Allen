@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Nzh.Allen.Model
 {
-    [Table("Users")]
+    [Table("User")]
     public class UserModel : Entity
     {
         /// <summary>

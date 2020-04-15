@@ -15,7 +15,7 @@ namespace Nzh.Allen.Service
         public dynamic GetListByFilter(UserModel filter, PageInfo pageInfo)
         {
             pageInfo.prefix = "a.";
-            string _where = " users a INNER JOIN role b ON a.RoleId=b.Id INNER JOIN organize c ON a.DepartmentId=c.Id";
+            string _where = " user a INNER JOIN role b ON a.RoleId=b.Id INNER JOIN organize c ON a.DepartmentId=c.Id";
             if (!string.IsNullOrEmpty(filter.Account))
             {
                 _where += string.Format(" and {0}Account=@Account", pageInfo.prefix);

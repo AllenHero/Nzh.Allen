@@ -20,7 +20,7 @@ namespace Nzh.Allen.Repository
         {
             using (var conn = dbContext.GetConnection())
             {
-                var sql = "Select * from users where 1=1";
+                var sql = "Select * from user where 1=1";
                 if (!string.IsNullOrEmpty(username))
                 {
                     sql += " and Account=@Account";
@@ -42,7 +42,7 @@ namespace Nzh.Allen.Repository
         {
             using (var conn = dbContext.GetConnection())
             {
-                var sql = "UPDATE users SET UserPassword=@UserPassword WHERE Id=@Id AND Account=@Account AND UserPassword=@OldPassword";
+                var sql = "UPDATE user SET UserPassword=@UserPassword WHERE Id=@Id AND Account=@Account AND UserPassword=@OldPassword";
                 return conn.Execute(sql, new { UserPassword = model.Password, Id = userId, Account = model.UserName, OldPassword = model.OldPassword });
             }
         }
