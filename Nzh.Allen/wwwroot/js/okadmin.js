@@ -233,42 +233,8 @@ layui.use(["element", "layer", "okUtils", "okTab", "okLayer", "okContextMenu", "
 
     function getContent() {
         let content = "";
-        content = "版权声明：<br/>" +
-            "Zl.WebApp说明：作者兴趣爱好将FineAdmin.Mvc移植到asp.net core3.1取名Zl.WebApp,发挥core版本的优势。<br/>" +
-            "ok-admin 和 FineAdmin.Mvc都使用GPL-3.0开源协议，个人<span style='color:#5cb85c'>免费使用</span>，商用请联系二位作者,本人无需授权<br/>" +
-            "作者：ZhangLu (我自己)<br/>" +
-            "Zl.WebApp开源地址：<a style='color:#ff5722;' target='_blank' href='https://gitee.com/Zl819058637/Zl.WebApp.git'><span>Zl.WebApp</span></a>";
         return content;
     }
-
-    /**
-     * 捐赠作者
-     */
-    $(".layui-footer button.donate").click(function () {
-        layer.tab({
-            area: ["330px", "350px"],
-            tab: [{
-                title: "支付宝",
-                content: "<img src='/images/zfb.jpg' width='200' height='300' style='margin-left: 60px'>"
-            }, {
-                title: "微信",
-                content: "<img src='/images/wx.png' width='200' height='300' style='margin-left: 60px'>"
-            }]
-        });
-    });
-
-    /**
-     * QQ群交流
-     */
-    $("body").on("click", ".layui-footer button.communication,#noticeQQ", function () {
-        layer.tab({
-            area: ["330px", "350px"],
-            tab: [{
-                title: "QQ",
-                content: "<img src='/images/qq.jpg' width='200' height='300' style='margin-left: 60px'>"
-            }]
-        });
-    });
 
     /**
      * 弹窗皮肤
@@ -278,41 +244,4 @@ layui.use(["element", "layer", "okUtils", "okTab", "okLayer", "okContextMenu", "
         }, function () {
         });
     });
-
-    console.log("        __                         .___      .__        \n" +
-        "  ____ |  | __         _____     __| _/_____ |__| ____  \n" +
-        " /  _ \\|  |/ /  ______ \\__  \\   / __ |/     \\|  |/    \\ \n" +
-        "(  <_> )    <  /_____/  / __ \\_/ /_/ |  Y Y  \\  |   |  \\\n" +
-        " \\____/|__|_ \\         (____  /\\____ |__|_|  /__|___|  /\n" +
-        "            \\/              \\/      \\/     \\/        \\/\n" +
-        "" +
-        "版本：v2.0\n" +
-        "作者：bobi\n" +
-        "邮箱：bobi1234@foxmail.com\n" +
-        "企鹅：833539807\n" +
-        "描述：一个很赞的，扁平化风格的，响应式布局的后台管理模版，旨为后端程序员减压！\n" +
-        "版权说明：项目使用GPL-3.0开源协议，个人免费使用，商用请获取授权\n" +
-        "码云：https://gitee.com/bobi1234/ok-admin");
-    console.log(" _____ _               _       _           _       \n" +
-        "|  ___(_)_ __   ___   / \\   __| |_ __ ___ (_)_ __  \n" +
-        "| |_  | | '_ \\ / _ \\ / _ \\ / _` | '_ ` _ \\| | '_ \\ \n" +
-        "|  _| | | | | |  __// ___ \\ (_| | | | | | | | | | |\n" +
-        "|_|   |_|_| |_|\\___/_/   \\_\\__,_|_| |_| |_|_|_| |_|\n" +
-        "作者：Liu_Cabbage\n" +
-        "邮箱：178899573@qq.com\n" +
-        "企鹅：178899573\n" +
-        "描述：使用ok-admin+ASP.NET MVC搭建的通用权限后台管理系统。\n" +
-        "版权说明：项目使用GPL-3.0开源协议，个人免费使用，商用请获取授权\n" +
-        "码云：https://gitee.com/Liu_Cabbage/FineAdmin.Mvc");
-    console.log(" _____ _               _       _           _       \n" +
-        "|  ___(_)_ __   ___   / \\   __| |_ __ ___ (_)_ __  \n" +
-        "| |_  | | '_ \\ / _ \\ / _ \\ / _` | '_ ` _ \\| | '_ \\ \n" +
-        "|  _| | | | | |  __// ___ \\ (_| | | | | | | | | | |\n" +
-        "|_|   |_|_| |_|\\___/_/   \\_\\__,_|_| |_| |_|_|_| |_|\n" +
-        "移植作者：ZhangLu\n" +
-        "邮箱：819058637@qq.com\n" +
-        "企鹅：819058637\n" +
-        "描述：使用ok-admin+ASP.NET core3搭建的通用权限后台管理系统。(移植FineAdmin.Mvc)\n" +
-        "版权说明：楼上授权就行\n" +
-        "码云：https://gitee.com/Zl819058637/Zl.WebApp.git");
 });
