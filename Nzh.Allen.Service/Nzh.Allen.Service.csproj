@@ -4,4 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Nzh.Allen.IRepository\Nzh.Allen.IRepository.csproj" />
+    <ProjectReference Include="..\Nzh.Allen.IService\Nzh.Allen.IService.csproj" />
+    <ProjectReference Include="..\Nzh.Allen.Model\Nzh.Allen.Model.csproj" />
+  </ItemGroup>
+
 </Project>
