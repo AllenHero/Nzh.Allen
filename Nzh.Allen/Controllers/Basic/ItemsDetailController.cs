@@ -6,28 +6,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Nzh.Allen.Controllers.Permissions
+namespace Nzh.Allen.Controllers.Basic
 {
-    public class ItemsController : BaseController
+    public class ItemsDetailController : BaseController
     {
         public IItemsService ItemsService { get; set; }
-        // GET: Permissions/Items
+        public IItemsDetailService ItemsDetailService { get; set; }
+        // GET: Permissions/ItemsDetail
         public override ActionResult Index(int? id)
         {
             base.Index(id);
             return View();
         }
         [HttpGet]
-        public JsonResult List()
+        public JsonResult List(ItemsDetailModel model, PageInfo pageInfo)
         {
-            var list = ItemsService.GetAll();
-            var result = new { code = 0, count = list.Count(), data = list };
-            return Json(result);
-        }
-        [HttpGet]
-        public JsonResult GetItemsTreeSelect()
-        {
-            var result = ItemsService.GetItemsTreeSelect();
+            var result = ItemsDetailService.GetListByFilter(model, pageInfo);
             return Json(result);
         }
         public ActionResult Add()
@@ -35,32 +29,32 @@ namespace Nzh.Allen.Controllers.Permissions
             return View();
         }
         [HttpPost]
-        public ActionResult Add(ItemsModel model)
+        public ActionResult Add(ItemsDetailModel model)
         {
             model.CreateTime = DateTime.Now;
             model.CreateUserId = Operator.UserId;
             model.UpdateTime = DateTime.Now;
             model.UpdateUserId = Operator.UserId;
-            var result = ItemsService.Insert(model) ? SuccessTip("添加成功") : ErrorTip("添加失败");
+            var result = ItemsDetailService.Insert(model) ? SuccessTip("添加成功") : ErrorTip("添加失败");
             return Json(result);
         }
         public ActionResult Edit(int id)
         {
-            var model = ItemsService.GetById(id);
+            var model = ItemsDetailService.GetById(id);
             return View(model);
         }
         [HttpPost]
-        public ActionResult Edit(ItemsModel model)
+        public ActionResult Edit(ItemsDetailModel model)
         {
             model.UpdateTime = DateTime.Now;
             model.UpdateUserId = Operator.UserId;
-            var result = ItemsService.UpdateById(model) ? SuccessTip("修改成功") : ErrorTip("修改失败");
+            var result = ItemsDetailService.UpdateById(model) ? SuccessTip("修改成功") : ErrorTip("修改失败");
             return Json(result);
         }
         [HttpGet]
         public JsonResult Delete(int id)
         {
-            var result = ItemsService.DeleteById(id) ? SuccessTip("删除成功") : ErrorTip("删除失败");
+            var result = ItemsDetailService.DeleteById(id) ? SuccessTip("删除成功") : ErrorTip("删除失败");
             return Json(result);
         }
 

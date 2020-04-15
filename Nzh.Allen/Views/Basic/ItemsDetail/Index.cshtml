@@ -33,13 +33,13 @@
         let $ = layui.$;
         treeSelect.render({
             elem: "#ItemId",
-            data: "/Permissions/Items/GetItemsTreeSelect",
+            data: "/Basic/Items/GetItemsTreeSelect",
             type: "GET"
         });
 
         let AllTable = table.render({
             elem: "#tableId",
-            url: "/Permissions/ItemsDetail/List",
+            url: "/Basic/ItemsDetail/List",
             limit: 10,
             page: true,
             toolbar: true,
@@ -89,16 +89,16 @@
         });
 
         function add() {
-            okLayer.open("添加字典", "/Permissions/ItemsDetail/Add", "100%", "100%", null, null);
+            okLayer.open("添加字典", "/Basic/ItemsDetail/Add", "100%", "100%", null, null);
         }
 
         function edit(id) {
-            okLayer.open("编辑字典", "/Permissions/ItemsDetail/Edit/" + id, "100%", "100%", null, null);
+            okLayer.open("编辑字典", "/Basic/ItemsDetail/Edit/" + id, "100%", "100%", null, null);
         }
 
         function del(id) {
             okLayer.confirm("确定要删除吗？", function () {
-                okUtils.ajax("/Permissions/ItemsDetail/Delete", "get", { id: id }, true).done(function (response) {
+                okUtils.ajax("/Basic/ItemsDetail/Delete", "get", { id: id }, true).done(function (response) {
                     okUtils.tableSuccessMsg(response.message);
                 }).fail(function (error) {
                     console.log(error)

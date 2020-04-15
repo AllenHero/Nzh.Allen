@@ -115,11 +115,9 @@ namespace Nzh.Allen
                 endpoints.MapAreaControllerRoute(
                      "Permissions_route", "Permissions", "Permissions/{controller=Index}/{action=Index}/{id?}");
                 endpoints.MapAreaControllerRoute(
-                     "Donation_route", "Donation", "Donation/{controller=Index}/{action=Index}/{id?}");
-                endpoints.MapAreaControllerRoute(
                      "Security_route", "Security", "Security/{controller=Index}/{action=Index}/{id?}");
                 endpoints.MapAreaControllerRoute(
-                 "SysSet_route", "SysSet", "SysSet/{controller=Index}/{action=Index}/{id?}");
+                 "Basic_route", "Basic", "Basic/{controller=Index}/{action=Index}/{id?}");
 
             });
         }
