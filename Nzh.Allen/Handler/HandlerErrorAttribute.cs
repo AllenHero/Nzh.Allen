@@ -19,7 +19,7 @@ namespace Nzh.Allen.Handler
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
-        }
 
+        }
     }
 }

@@ -10,13 +10,6 @@ namespace Nzh.Allen.Repository
 {
     public class ButtonRepository : BaseRepository<ButtonModel>, IButtonRepository
     {
-        /// <summary>
-        /// 根据角色菜单按钮位置获得按钮列表
-        /// </summary>
-        /// <param name="roleId"></param>
-        /// <param name="moduleId"></param>
-        /// <param name="position"></param>
-        /// <returns></returns>
         public IEnumerable<ButtonModel> GetButtonListByRoleIdMenuId(int roleId, int menuId, PositionEnum position)
         {
             using (var conn = dbContext.GetConnection())
@@ -31,13 +24,6 @@ namespace Nzh.Allen.Repository
             }
         }
 
-        /// <summary>
-        /// 根据角色菜单获得按钮列表
-        /// </summary>
-        /// <param name="roleId"></param>
-        /// <param name="moduleId"></param>
-        /// <param name="selectList"></param>
-        /// <returns></returns>
         public IEnumerable<ButtonModel> GetButtonListByRoleIdMenuId(int roleId, int menuId, out IEnumerable<ButtonModel> selectList)
         {
             using (var conn = dbContext.GetConnection())

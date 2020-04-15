@@ -12,24 +12,12 @@ namespace Nzh.Allen.Service
     public class ButtonService : BaseService<ButtonModel>, IButtonService
     {
         public IButtonRepository ButtonRepository { get; set; }
-        /// <summary>
-        /// 根据角色菜单按钮位置获得按钮列表
-        /// </summary>
-        /// <param name="roleId"></param>
-        /// <param name="moduleId"></param>
-        /// <param name="position"></param>
-        /// <returns></returns>
+
         public IEnumerable<ButtonModel> GetButtonListByRoleIdMenuId(int roleId, int menuId, PositionEnum position)
         {
             return ButtonRepository.GetButtonListByRoleIdMenuId(roleId, menuId, position);
         }
 
-        /// <summary>
-        /// 根据角色菜单获得按钮列表Html
-        /// </summary>
-        /// <param name="roleId"></param>
-        /// <param name="moduleId"></param>
-        /// <returns></returns>
         public string GetButtonListHtmlByRoleIdMenuId(int roleId, int menuId)
         {
             IEnumerable<ButtonModel> selectList = null;
@@ -59,6 +47,5 @@ namespace Nzh.Allen.Service
             }
             return GetListByFilter(filter, pageInfo, _where);
         }
-
     }
 }

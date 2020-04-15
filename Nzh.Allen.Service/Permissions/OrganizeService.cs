@@ -11,20 +11,17 @@ namespace Nzh.Allen.Service
     public class OrganizeService : BaseService<OrganizeModel>, IOrganizeService
     {
         public IOrganizeRepository OrganizeRepository { get; set; }
+
         public dynamic GetListByFilter(OrganizeModel filter, PageInfo pageInfo)
         {
             throw new NotImplementedException();
         }
-        /// <summary>
-        /// Organize TreeGrid数据列表
-        /// </summary>
+
         public IEnumerable<OrganizeModel> GetOrganizeList()
         {
             return OrganizeRepository.GetOrganizeList();
         }
-        /// <summary>
-        /// Organize treeSelect数据列表
-        /// </summary>
+
         public IEnumerable<TreeSelect> GetOrganizeTreeSelect()
         {
             IEnumerable<OrganizeModel> organizeList = BaseRepository.GetAll("Id,FullName,ParentId", "ORDER BY SortCode ASC");
@@ -43,9 +40,7 @@ namespace Nzh.Allen.Service
             }
             return treeSelectList;
         }
-        /// <summary>
-        /// 递归遍历treeSelectList
-        /// </summary>
+
         private void GetOrganizeChildren(List<TreeSelect> treeSelectList, IEnumerable<OrganizeModel> organizeList, TreeSelect tree, int id)
         {
             var childOrganizeList = organizeList.Where(x => x.ParentId == id).OrderBy(x => x.SortCode);
@@ -66,6 +61,5 @@ namespace Nzh.Allen.Service
                 }
             }
         }
-
     }
 }

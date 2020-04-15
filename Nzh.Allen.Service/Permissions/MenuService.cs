@@ -11,7 +11,9 @@ namespace Nzh.Allen.Service
     public class MenuService : BaseService<MenuModel>, IMenuService
     {
         public IMenuRepository MenuRepository { get; set; }
+
         public IButtonService ButtonService { get; set; }
+
         public IRoleAuthorizeService RoleAuthorizeService { get; set; }
 
         public dynamic GetListByFilter(MenuModel filter, PageInfo pageInfo)
@@ -19,11 +21,6 @@ namespace Nzh.Allen.Service
             throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// 获得菜单列表
-        /// </summary>
-        /// <param name="roleId"></param>
-        /// <returns></returns>
         public dynamic GetMenuList(int roleId)
         {
             IEnumerable<MenuModel> allMenus = GetMenuListByRoleId(roleId);
@@ -39,13 +36,6 @@ namespace Nzh.Allen.Service
             return result;
         }
 
-        /// <summary>
-        /// 根据一级菜单加载子菜单列表
-        /// </summary>
-        /// <param name="treeList"></param>
-        /// <param name="allMenus"></param>
-        /// <param name="tree"></param>
-        /// <param name="moduleId"></param>
         private void GetMenuListByMenuId(List<Tree> treeList, IEnumerable<MenuModel> allMenus, Tree tree, int menuId)
         {
             var childMenus = allMenus.Where(x => x.ParentId == menuId).OrderBy(x => x.SortCode);
@@ -62,11 +52,6 @@ namespace Nzh.Allen.Service
             }
         }
 
-        /// <summary>
-        /// 根据角色ID获取菜单列表
-        /// </summary>
-        /// <param name="roleId"></param>
-        /// <returns></returns>
         private IEnumerable<MenuModel> GetMenuListByRoleId(int roleId)
         {
             string sql = @"SELECT DISTINCT b.* FROM roleauthorize a INNER JOIN menu b ON a.MenuId = b.Id WHERE a.RoleId = @RoleId ORDER BY b.SortCode ASC";
@@ -74,9 +59,6 @@ namespace Nzh.Allen.Service
             return list;
         }
 
-        /// <summary>
-        /// Module treeSelect数据列表
-        /// </summary>
         public IEnumerable<TreeSelect> GetMenuTreeSelect()
         {
             IEnumerable<MenuModel> menuList = MenuRepository.GetAll("Id,FullName,ParentId", "ORDER BY SortCode ASC");
@@ -96,9 +78,6 @@ namespace Nzh.Allen.Service
             return treeSelectList;
         }
 
-        /// <summary>
-        /// 递归遍历treeSelectList
-        /// </summary>
         private void GetMenuChildren(List<TreeSelect> treeSelectList, IEnumerable<MenuModel> menuList, TreeSelect tree, int id)
         {
             var childMenuList = menuList.Where(x => x.ParentId == id).OrderBy(x => x.SortCode);
@@ -119,11 +98,7 @@ namespace Nzh.Allen.Service
                 }
             }
         }
-        /// <summary>
-        /// 获取所有菜单列表及可用按钮权限列表
-        /// </summary>
-        /// <param name="roleId">角色ID</param>
-        /// <returns></returns>
+
         public IEnumerable<MenuModel> GetMenuButtonList(int roleId)
         {
             string returnFields = "Id,ParentId,FullName,Icon,SortCode";

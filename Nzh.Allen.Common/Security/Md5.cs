@@ -7,12 +7,6 @@ namespace Nzh.Allen.Common
 {
     public class Md5
     {
-        /// <summary>
-        /// MD5加密
-        /// </summary>
-        /// <param name="str">加密字符</param>
-        /// <param name="code">加密位数16/32</param>
-        /// <returns></returns>
         public static string md5(string str, int bit)
         {
             MD5CryptoServiceProvider md5Hasher = new MD5CryptoServiceProvider();

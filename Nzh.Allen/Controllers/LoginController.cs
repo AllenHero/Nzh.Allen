@@ -13,19 +13,23 @@ namespace Nzh.Allen.Controllers
     public class LoginController : Controller
     {
         public IHttpContextAccessor httpContextAccessor { get; set; }
+
         public IUserService UserService { get; set; }
+
         public ILogService LogService { get; set; }
-        // GET: Login
+
         public ActionResult Index()
         {
             return View();
         }
+
         [HttpGet]
         public ActionResult GetAuthCode()
         {
 
             return File(new VerifyCode(HttpContext).GetVerifyCode(), @"image/Gif");
         }
+
         [HttpPost]
         public ActionResult LoginOn(string username, string password, string captcha)
         {
@@ -74,6 +78,7 @@ namespace Nzh.Allen.Controllers
                 return Content(new AjaxResult { state = ResultType.error.ToString(), message = ex.Message }.ToJson());
             }
         }
+
         [HttpGet]
         public ActionResult LoginOut()
         {
@@ -89,6 +94,7 @@ namespace Nzh.Allen.Controllers
             OperatorProvider.RemoveCurrent();
             return RedirectToAction("Index", "Login");
         }
+
         public ActionResult Error()
         {
 

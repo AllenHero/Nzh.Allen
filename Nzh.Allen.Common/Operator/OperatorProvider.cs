@@ -9,11 +9,14 @@ namespace Nzh.Allen.Common
     public class OperatorProvider
     {
         public WebHelper WebHelper;
+
         public OperatorProvider(HttpContext httpContext)
         {
             WebHelper = new WebHelper(httpContext);
         }
+
         private string LoginUserKey = "Loginkey";
+
         private string LoginProvider = Configs.GetValue("LoginProvider");
 
         public OperatorModel GetCurrent()
@@ -29,6 +32,7 @@ namespace Nzh.Allen.Common
             }
             return operatorModel;
         }
+
         public void AddCurrent(OperatorModel operatorModel)
         {
             if (LoginProvider == "Cookie")
@@ -41,6 +45,7 @@ namespace Nzh.Allen.Common
             }
             WebHelper.WriteCookie("Mac", Md5.md5(GetMacByNetworkInterface().ToJson(), 32));
         }
+
         public void RemoveCurrent()
         {
             if (LoginProvider == "Cookie")
@@ -52,10 +57,7 @@ namespace Nzh.Allen.Common
                 WebHelper.RemoveSession(LoginUserKey.Trim());
             }
         }
-        ///<summary>
-        /// 通过NetworkInterface读取网卡Mac
-        ///</summary>
-        ///<returns></returns>
+
         public List<string> GetMacByNetworkInterface()
         {
             List<string> macs = new List<string>();

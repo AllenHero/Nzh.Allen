@@ -9,6 +9,7 @@ namespace Nzh.Allen.Repository
     public class DbContext
     {
         public IConfiguration configuration { set; get; }
+
         public System.Data.IDbConnection GetConnection()
         {
             string connectionString = configuration.GetValue<string>("Db:ConnectionString");

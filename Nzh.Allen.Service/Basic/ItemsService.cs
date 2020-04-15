@@ -14,9 +14,6 @@ namespace Nzh.Allen.Service
             throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Items treeSelect数据列表
-        /// </summary>
         public IEnumerable<TreeSelect> GetItemsTreeSelect()
         {
             IEnumerable<ItemsModel> menuList = BaseRepository.GetAll("Id,FullName,ParentId", "ORDER BY SortCode ASC");
@@ -36,9 +33,6 @@ namespace Nzh.Allen.Service
             return treeSelectList;
         }
 
-        /// <summary>
-        /// 递归遍历treeSelectList
-        /// </summary>
         private void GetItemsChildren(List<TreeSelect> treeSelectList, IEnumerable<ItemsModel> menuList, TreeSelect tree, int id)
         {
             var childMenuList = menuList.Where(x => x.ParentId == id).OrderBy(x => x.SortCode);

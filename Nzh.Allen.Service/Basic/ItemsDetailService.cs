@@ -27,6 +27,5 @@ namespace Nzh.Allen.Service
             pageInfo.returnFields = string.Format("{0}Id,{0}ItemCode,{0}ItemName,{0}SortCode,b.FullName as 'ItemType',{0}CreateTime", pageInfo.prefix);
             return GetPageUnite(filter, pageInfo, _where);
         }
-
     }
 }

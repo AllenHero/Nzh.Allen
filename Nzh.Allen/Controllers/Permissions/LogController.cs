@@ -11,25 +11,27 @@ namespace Nzh.Allen.Controllers.Permissions
     public class LogController : BaseController
     {
         public ILogService LogService { get; set; }
-        // GET: Security/LogonLog
-        //这里Index其实可以省略，不省略的话就重写父类，吧菜单Id传过去
+
         public override ActionResult Index(int? id)
         {
             base.Index(id);
             return View();
         }
+
         [HttpGet]
         public JsonResult List(LogModel model, PageInfo pageInfo)
         {
             var result = LogService.GetListByFilter(model, pageInfo);
             return Json(result);
         }
+
         [HttpGet]
         public JsonResult Delete(int id)
         {
             var result = LogService.DeleteById(id) ? SuccessTip("删除成功") : ErrorTip("删除失败");
             return Json(result);
         }
+
         [HttpGet]
         public JsonResult BatchDel(string idsStr)
         {

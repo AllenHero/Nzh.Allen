@@ -10,12 +10,6 @@ namespace Nzh.Allen.Repository
 {
     public class RoleAuthorizeRepository : BaseRepository<RoleAuthorizeModel>, IRoleAuthorizeRepository
     {
-        /// <summary>
-        /// 保存菜单角色权限配置
-        /// </summary>
-        /// <param name="entitys"></param>
-        /// <param name="roleId"></param>
-        /// <returns></returns>
         public int SavePremission(IEnumerable<RoleAuthorizeModel> entitys, int roleId)
         {
             int result = 0;

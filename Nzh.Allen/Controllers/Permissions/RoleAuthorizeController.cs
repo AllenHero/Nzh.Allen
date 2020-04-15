@@ -12,7 +12,6 @@ namespace Nzh.Allen.Controllers.Permissions
     {
         public IRoleAuthorizeService RoleAuthorizeService { get; set; }
 
-        // GET: Permissions/RoleAuthorize
         public override ActionResult Index(int? id)
         {
             base.Index(id);

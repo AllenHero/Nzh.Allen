@@ -30,15 +30,7 @@ namespace Nzh.Allen.Handler
 
         public void OnActionExecuted(ActionExecutedContext context)
         {
-            //if (context.Result?.GetType() == typeof(JsonResult))
-            //{
-            //    JsonResult result = context.Result as JsonResult;
-            //    JObject valueObject = (JObject)(result.Value);
-            //    valueObject["xb"] = "xxxx";
-            //    result.Value = valueObject;
-            //    context.Result = result;
-            //    string yy = "";
-            //}
+          
         }
     }
 }

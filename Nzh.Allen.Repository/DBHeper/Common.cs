@@ -31,7 +31,6 @@ namespace Nzh.Allen.Repository
                 p.Add("PageSize", criteria.PageSize);
                 p.Add("Sort", criteria.Sort);
                 p.Add("RecordCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
-
                 conn.Open();
                 var pageData = new PageDataView<T>();
                 pageData.Items = conn.Query<T>(proName, p, commandType: CommandType.StoredProcedure).ToList();

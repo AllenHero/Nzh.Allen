@@ -8,9 +8,6 @@ namespace Nzh.Allen.Extension
 {
     public static class DapperExtAllSQL
     {
-        /// <summary>
-        /// 返回DataTable
-        /// </summary>
         public static DataTable GetDataTableBase(this IDbConnection conn, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null)
         {
             using (IDataReader reader = conn.ExecuteReader(sql, param, transaction, commandTimeout))
@@ -21,9 +18,6 @@ namespace Nzh.Allen.Extension
             }
         }
 
-        /// <summary>
-        /// 返回DataSet
-        /// </summary>
         public static DataSet GetDataSetBase(this IDbConnection conn, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null)
         {
             using (IDataReader reader = conn.ExecuteReader(sql, param, transaction, commandTimeout))

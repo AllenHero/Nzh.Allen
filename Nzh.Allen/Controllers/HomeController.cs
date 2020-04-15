@@ -26,8 +26,6 @@ namespace Nzh.Allen.Controllers
 
         public ActionResult Main()
         {
-            //DonationModel donationModel = DonationService.GetConsoleNumShow();
-            //ViewBag.DonationTop = DonationService.GetSumPriceTop(5).ToList();
             return View();
         }
 
@@ -72,6 +70,5 @@ namespace Nzh.Allen.Controllers
                 return Json(uploadFile);
             }
         }
-
     }
 }

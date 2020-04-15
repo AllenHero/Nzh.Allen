@@ -11,10 +11,12 @@ namespace Nzh.Allen.Common
     public class VerifyCode
     {
         public WebHelper WebHelper;
+
         public VerifyCode(HttpContext context)
         {
             WebHelper = new WebHelper(context);
         }
+
         public byte[] GetVerifyCode()
         {
             int codeW = 80;

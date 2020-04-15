@@ -33,23 +33,11 @@ namespace Nzh.Allen.Service
             return GetPageUnite(filter, pageInfo, _where);
         }
 
-        /// <summary>
-        /// 登录
-        /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
         public UserModel LoginOn(string username, string password)
         {
             return UserRepository.LoginOn(username, password);
         }
 
-        /// <summary>
-        /// 修改密码
-        /// </summary>
-        /// <param name="model"></param>
-        /// <param name="userId"></param>
-        /// <returns></returns>
         public int ModifyUserPwd(ModifyPwd model, int userId)
         {
             model.OldPassword = Md5.md5(model.OldPassword, 32);

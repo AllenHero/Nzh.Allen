@@ -10,24 +10,11 @@ namespace Nzh.Allen.Common
     {
         private static string DESKey = "Key123Ace#321Key";
 
-        #region ========加密========
-        /// <summary>
-        /// 加密
-        /// </summary>
-        /// <param name="Text"></param>
-        /// <returns></returns>
         public static string Encrypt(string Text)
         {
             return Encrypt(Text, DESKey);
         }
-        #endregion
 
-        #region ========解密========
-        /// <summary>
-        /// 解密
-        /// </summary>
-        /// <param name="Text"></param>
-        /// <returns></returns>
         public static string Decrypt(string Text)
         {
             if (!string.IsNullOrEmpty(Text))
@@ -39,14 +26,10 @@ namespace Nzh.Allen.Common
                 return "";
             }
         }
+
         //默认密钥向量 
         private static byte[] Keys = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F };
-        /// <summary> 
-        /// DES加密字符串 
-        /// </summary> 
-        /// <param name="encryptString">待加密的字符串</param> 
-        /// <param name="encryptKey">加密密钥,要求为16位</param> 
-        /// <returns>加密成功返回加密后的字符串，失败返回源串</returns> 
+
         public static string Encrypt(string encryptString, string encryptKey = "Key123Ace#321Key")
         {
             try
@@ -65,14 +48,8 @@ namespace Nzh.Allen.Common
             {
                 return ex.Message + encryptString;
             }
-
         }
-        /// <summary> 
-        /// DES解密字符串 
-        /// </summary> 
-        /// <param name="decryptString">待解密的字符串</param> 
-        /// <param name="decryptKey">解密密钥,要求为16位,和加密密钥相同</param> 
-        /// <returns>解密成功返回解密后的字符串，失败返源串</returns> 
+
         public static string Decrypt(string decryptString, string decryptKey = "Key123Ace#321Key")
         {
             try
@@ -94,6 +71,5 @@ namespace Nzh.Allen.Common
             }
 
         }
-        #endregion
     }
 }
