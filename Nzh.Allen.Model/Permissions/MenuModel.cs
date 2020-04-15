@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Nzh.Allen.Model
 {
-    [Table("Module")]
-    public class ModuleModel : Entity
+    [Table("Menu")]
+    public class MenuModel : Entity
     {
         /// <summary>
         /// 父级

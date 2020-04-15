@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Nzh.Allen.IRepository
 {
-    public interface IModuleRepository : IBaseRepository<ModuleModel>
+    public interface IMenuRepository : IBaseRepository<MenuModel>
     {
         /// <summary>
         /// 根据角色ID获取菜单列表
@@ -13,7 +13,7 @@ namespace Nzh.Allen.IRepository
         /// <param name="sql"></param>
         /// <param name="roleId"></param>
         /// <returns></returns>
-        IEnumerable<ModuleModel> GetModuleListByRoleId(string sql, int roleId);
+        IEnumerable<MenuModel> GetModuleListByRoleId(string sql, int roleId);
 
     }
 }

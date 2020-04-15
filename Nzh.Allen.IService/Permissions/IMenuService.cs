@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Nzh.Allen.IService
 {
-    public interface IModuleService : IBaseService<ModuleModel>
+    public interface IMenuService : IBaseService<MenuModel>
     {
         /// <summary>
         /// 获得菜单列表
@@ -22,6 +22,6 @@ namespace Nzh.Allen.IService
         /// </summary>
         /// <param name="roleId">角色ID</param>
         /// <returns></returns>
-        IEnumerable<ModuleModel> GetModuleButtonList(int roleId);
+        IEnumerable<MenuModel> GetModuleButtonList(int roleId);
     }
 }
