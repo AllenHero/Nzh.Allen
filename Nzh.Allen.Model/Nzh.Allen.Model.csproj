@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Nzh.Allen.Common\Nzh.Allen.Common.csproj" />
+    <ProjectReference Include="..\Nzh.Allen.Extension\Nzh.Allen.Extension.csproj" />
+  </ItemGroup>
+
 </Project>
