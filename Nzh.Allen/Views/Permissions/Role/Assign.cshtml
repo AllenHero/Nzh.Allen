@@ -28,7 +28,7 @@
 
         treeGrid.render({
             elem: "#tableId",
-            url: "/Permissions/Menu/ModuleButtonList?roleId=@ViewBag.RoleId",
+            url: "/Permissions/Menu/MenuButtonList?roleId=@ViewBag.RoleId",
             page: false,
             toolbar: "#toolbarTpl",
             size: "sm",
@@ -39,7 +39,7 @@
             cols: [[
                 { field: "Id", title: "ID", width: 80, sort: true },
                 { field: "FullName", title: "菜单名称", width: 200 ,type:'checkbox_txt' },
-                { field: "ModuleButtonHtml", title: "按钮权限" },
+                { field: "MenuButtonHtml", title: "按钮权限" },
                 { field: "Icon", title: "菜单图标", width: 80, templet: '<span>{{showIcon(d.Icon)}}<span>' },
                 { field: "SortCode", title: "排序码", width: 80 },
                 { title: "操作", width: 120, align: "center", fixed: "right", templet: "#operationTpl"}
@@ -64,7 +64,7 @@
             var _list = [];
             cbxs.each(function (index, item) {
                 if (item.checked == true) {
-                    var _row = { RoleId: 0, ModuleId: 0, ButtonId: 0 };
+                    var _row = { RoleId: 0, MenuId: 0, ButtonId: 0 };
                     var _name = item.name;//chx_2
                     if (_name.indexOf('cbx_') > -1) {
                         _name = _name.replace('cbx_', '');
@@ -75,7 +75,7 @@
                         }
                     }
                     _row.RoleId = _roleId;
-                    _row.ModuleId = _name;
+                    _row.MenuId = _name;
                     _row.ButtonId = item.value == "on" ? null : item.value;
                     _list.push(_row);
                 }
@@ -108,7 +108,7 @@
 </script>
 <!-- 行工具栏模板 -->
 <script type="text/html" id="operationTpl">
-    {{# if(d.ModuleButtonHtml!=""){}}
+    {{# if(d.MenuButtonHtml!=""){}}
     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="selectAll">全选</a>
     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="cancleSelectAll">反选</a>
     {{# } }}

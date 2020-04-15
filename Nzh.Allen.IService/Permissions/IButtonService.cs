@@ -15,7 +15,7 @@ namespace Nzh.Allen.IService
         /// <param name="moduleId"></param>
         /// <param name="position"></param>
         /// <returns></returns>
-        IEnumerable<ButtonModel> GetButtonListByRoleIdModuleId(int roleId, int moduleId, PositionEnum position);
+        IEnumerable<ButtonModel> GetButtonListByRoleIdMenuId(int roleId, int menuId, PositionEnum position);
 
         /// <summary>
         /// 根据角色菜单获得按钮列表Html
@@ -23,6 +23,6 @@ namespace Nzh.Allen.IService
         /// <param name="roleId"></param>
         /// <param name="moduleId"></param>
         /// <returns></returns>
-        string GetButtonListHtmlByRoleIdModuleId(int roleId, int moduleId);
+        string GetButtonListHtmlByRoleIdMenuId(int roleId, int menuId);
     }
 }

@@ -21,6 +21,6 @@ namespace Nzh.Allen.IService
         /// <param name="roleId"></param>
         /// <param name="moduleId"></param>
         /// <returns></returns>
-        IEnumerable<RoleAuthorizeModel> GetListByRoleIdModuleId(int roleId, int moduleId);
+        IEnumerable<RoleAuthorizeModel> GetListByRoleIdMenuId(int roleId, int menuId);
     }
 }

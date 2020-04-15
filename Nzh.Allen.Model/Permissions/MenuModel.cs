@@ -33,7 +33,7 @@ namespace Nzh.Allen.Model
         /// 菜单按钮复选框Html
         /// </summary>
         [Computed]
-        public string ModuleButtonHtml { get; set; }
+        public string MenuButtonHtml { get; set; }
         /// <summary>
         /// 菜单是否选中
         /// </summary>

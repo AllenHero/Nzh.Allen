@@ -25,15 +25,15 @@ namespace Nzh.Allen.Controllers.Permissions
             return Json(result);
         }
         [HttpGet]
-        public JsonResult GetModuleList()
+        public JsonResult GetMenuList()
         {
-            object result = MenuService.GetModuleList(Operator.RoleId);
+            object result = MenuService.GetMenuList(Operator.RoleId);
             return Json(result);
         }
         [HttpGet]
-        public JsonResult GetModuleTreeSelect()
+        public JsonResult GetMenuTreeSelect()
         {
-            var result = MenuService.GetModuleTreeSelect();
+            var result = MenuService.GetMenuTreeSelect();
             return Json(result);
         }
         public ActionResult Add()
@@ -73,9 +73,9 @@ namespace Nzh.Allen.Controllers.Permissions
             return Json(result);
         }
         [HttpGet]
-        public JsonResult ModuleButtonList(int roleId)
+        public JsonResult MenuButtonList(int roleId)
         {
-            var list = MenuService.GetModuleButtonList(roleId);
+            var list = MenuService.GetMenuButtonList(roleId);
             var result = new { code = 0, count = list.Count(), data = list };
             return Json(result);
         }

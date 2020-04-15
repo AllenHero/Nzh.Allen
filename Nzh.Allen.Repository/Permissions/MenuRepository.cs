@@ -15,7 +15,7 @@ namespace Nzh.Allen.Repository
         /// <param name="sql"></param>
         /// <param name="roleId"></param>
         /// <returns></returns>
-        public IEnumerable<MenuModel> GetModuleListByRoleId(string sql, int roleId)
+        public IEnumerable<MenuModel> GetMenuListByRoleId(string sql, int roleId)
         {
             using (var conn = dbContext.GetConnection())
             {

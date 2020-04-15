@@ -15,7 +15,7 @@ namespace Nzh.Allen.IRepository
         /// <param name="moduleId"></param>
         /// <param name="position"></param>
         /// <returns></returns>
-        IEnumerable<ButtonModel> GetButtonListByRoleIdModuleId(int roleId, int moduleId, PositionEnum position);
+        IEnumerable<ButtonModel> GetButtonListByRoleIdMenuId(int roleId, int menuId, PositionEnum position);
 
         /// <summary>
         /// 根据角色菜单获得按钮列表
@@ -24,6 +24,6 @@ namespace Nzh.Allen.IRepository
         /// <param name="moduleId"></param>
         /// <param name="selectList"></param>
         /// <returns></returns>
-        IEnumerable<ButtonModel> GetButtonListByRoleIdModuleId(int roleId, int moduleId, out IEnumerable<ButtonModel> selectList);
+        IEnumerable<ButtonModel> GetButtonListByRoleIdMenuId(int roleId, int menuId, out IEnumerable<ButtonModel> selectList);
     }
 }

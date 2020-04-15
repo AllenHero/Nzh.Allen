@@ -13,7 +13,7 @@ namespace Nzh.Allen.IRepository
         /// <param name="sql"></param>
         /// <param name="roleId"></param>
         /// <returns></returns>
-        IEnumerable<MenuModel> GetModuleListByRoleId(string sql, int roleId);
+        IEnumerable<MenuModel> GetMenuListByRoleId(string sql, int roleId);
 
     }
 }

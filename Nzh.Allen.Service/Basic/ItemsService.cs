@@ -19,10 +19,10 @@ namespace Nzh.Allen.Service
         /// </summary>
         public IEnumerable<TreeSelect> GetItemsTreeSelect()
         {
-            IEnumerable<ItemsModel> moduleList = BaseRepository.GetAll("Id,FullName,ParentId", "ORDER BY SortCode ASC");
-            var rootModuleList = moduleList.Where(x => x.ParentId == 0).OrderBy(x => x.SortCode);
+            IEnumerable<ItemsModel> menuList = BaseRepository.GetAll("Id,FullName,ParentId", "ORDER BY SortCode ASC");
+            var rootMenuList = menuList.Where(x => x.ParentId == 0).OrderBy(x => x.SortCode);
             List<TreeSelect> treeSelectList = new List<TreeSelect>();
-            foreach (var item in rootModuleList)
+            foreach (var item in rootMenuList)
             {
                 TreeSelect tree = new TreeSelect
                 {
@@ -30,7 +30,7 @@ namespace Nzh.Allen.Service
                     name = item.FullName,
                     open = false
                 };
-                GetItemsChildren(treeSelectList, moduleList, tree, item.Id);
+                GetItemsChildren(treeSelectList, menuList, tree, item.Id);
                 treeSelectList.Add(tree);
             }
             return treeSelectList;
@@ -39,13 +39,13 @@ namespace Nzh.Allen.Service
         /// <summary>
         /// 递归遍历treeSelectList
         /// </summary>
-        private void GetItemsChildren(List<TreeSelect> treeSelectList, IEnumerable<ItemsModel> moduleList, TreeSelect tree, int id)
+        private void GetItemsChildren(List<TreeSelect> treeSelectList, IEnumerable<ItemsModel> menuList, TreeSelect tree, int id)
         {
-            var childModuleList = moduleList.Where(x => x.ParentId == id).OrderBy(x => x.SortCode);
-            if (childModuleList != null && childModuleList.Count() > 0)
+            var childMenuList = menuList.Where(x => x.ParentId == id).OrderBy(x => x.SortCode);
+            if (childMenuList != null && childMenuList.Count() > 0)
             {
                 List<TreeSelect> _children = new List<TreeSelect>();
-                foreach (var item in childModuleList)
+                foreach (var item in childMenuList)
                 {
                     TreeSelect _tree = new TreeSelect
                     {
@@ -55,7 +55,7 @@ namespace Nzh.Allen.Service
                     };
                     _children.Add(_tree);
                     tree.children = _children;
-                    GetItemsChildren(treeSelectList, moduleList, _tree, item.Id);
+                    GetItemsChildren(treeSelectList, menuList, _tree, item.Id);
                 }
             }
         }

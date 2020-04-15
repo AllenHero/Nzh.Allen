@@ -24,15 +24,15 @@ namespace Nzh.Allen.Service
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
-        public dynamic GetModuleList(int roleId)
+        public dynamic GetMenuList(int roleId)
         {
-            IEnumerable<MenuModel> allMenus = GetModuleListByRoleId(roleId);
+            IEnumerable<MenuModel> allMenus = GetMenuListByRoleId(roleId);
             List<Tree> treeList = new List<Tree>();
             var rootMenus = allMenus.Where(x => x.ParentId == 0).OrderBy(x => x.SortCode);
             foreach (var item in rootMenus)
             {
                 var _tree = new Tree { id = item.Id, title = item.FullName, href = item.UrlAddress, fontFamily = item.FontFamily, icon = item.Icon };
-                GetModuleListByModuleId(treeList, allMenus, _tree, item.Id);
+                GetMenuListByMenuId(treeList, allMenus, _tree, item.Id);
                 treeList.Add(_tree);
             }
             var result = treeList;
@@ -46,9 +46,9 @@ namespace Nzh.Allen.Service
         /// <param name="allMenus"></param>
         /// <param name="tree"></param>
         /// <param name="moduleId"></param>
-        private void GetModuleListByModuleId(List<Tree> treeList, IEnumerable<MenuModel> allMenus, Tree tree, int moduleId)
+        private void GetMenuListByMenuId(List<Tree> treeList, IEnumerable<MenuModel> allMenus, Tree tree, int menuId)
         {
-            var childMenus = allMenus.Where(x => x.ParentId == moduleId).OrderBy(x => x.SortCode);
+            var childMenus = allMenus.Where(x => x.ParentId == menuId).OrderBy(x => x.SortCode);
             if (childMenus != null && childMenus.Count() > 0)
             {
                 List<Tree> _children = new List<Tree>();
@@ -57,7 +57,7 @@ namespace Nzh.Allen.Service
                     var _tree = new Tree { id = item.Id, title = item.FullName, href = item.UrlAddress, fontFamily = item.FontFamily, icon = item.Icon };
                     _children.Add(_tree);
                     tree.children = _children;
-                    GetModuleListByModuleId(treeList, allMenus, _tree, item.Id);
+                    GetMenuListByMenuId(treeList, allMenus, _tree, item.Id);
                 }
             }
         }
@@ -67,22 +67,22 @@ namespace Nzh.Allen.Service
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
-        private IEnumerable<MenuModel> GetModuleListByRoleId(int roleId)
+        private IEnumerable<MenuModel> GetMenuListByRoleId(int roleId)
         {
-            string sql = @"SELECT DISTINCT b.* FROM roleauthorize a INNER JOIN menu b ON a.ModuleId = b.Id WHERE a.RoleId = @RoleId ORDER BY b.SortCode ASC";
-            var list = MenuRepository.GetModuleListByRoleId(sql, roleId);
+            string sql = @"SELECT DISTINCT b.* FROM roleauthorize a INNER JOIN menu b ON a.MenuId = b.Id WHERE a.RoleId = @RoleId ORDER BY b.SortCode ASC";
+            var list = MenuRepository.GetMenuListByRoleId(sql, roleId);
             return list;
         }
 
         /// <summary>
         /// Module treeSelect数据列表
         /// </summary>
-        public IEnumerable<TreeSelect> GetModuleTreeSelect()
+        public IEnumerable<TreeSelect> GetMenuTreeSelect()
         {
-            IEnumerable<MenuModel> moduleList = MenuRepository.GetAll("Id,FullName,ParentId", "ORDER BY SortCode ASC");
-            var rootModuleList = moduleList.Where(x => x.ParentId == 0).OrderBy(x => x.SortCode);
+            IEnumerable<MenuModel> menuList = MenuRepository.GetAll("Id,FullName,ParentId", "ORDER BY SortCode ASC");
+            var rootMenuList = menuList.Where(x => x.ParentId == 0).OrderBy(x => x.SortCode);
             List<TreeSelect> treeSelectList = new List<TreeSelect>();
-            foreach (var item in rootModuleList)
+            foreach (var item in rootMenuList)
             {
                 TreeSelect tree = new TreeSelect
                 {
@@ -90,7 +90,7 @@ namespace Nzh.Allen.Service
                     name = item.FullName,
                     open = false
                 };
-                GetModuleChildren(treeSelectList, moduleList, tree, item.Id);
+                GetMenuChildren(treeSelectList, menuList, tree, item.Id);
                 treeSelectList.Add(tree);
             }
             return treeSelectList;
@@ -99,13 +99,13 @@ namespace Nzh.Allen.Service
         /// <summary>
         /// 递归遍历treeSelectList
         /// </summary>
-        private void GetModuleChildren(List<TreeSelect> treeSelectList, IEnumerable<MenuModel> moduleList, TreeSelect tree, int id)
+        private void GetMenuChildren(List<TreeSelect> treeSelectList, IEnumerable<MenuModel> menuList, TreeSelect tree, int id)
         {
-            var childModuleList = moduleList.Where(x => x.ParentId == id).OrderBy(x => x.SortCode);
-            if (childModuleList != null && childModuleList.Count() > 0)
+            var childMenuList = menuList.Where(x => x.ParentId == id).OrderBy(x => x.SortCode);
+            if (childMenuList != null && childMenuList.Count() > 0)
             {
                 List<TreeSelect> _children = new List<TreeSelect>();
-                foreach (var item in childModuleList)
+                foreach (var item in childMenuList)
                 {
                     TreeSelect _tree = new TreeSelect
                     {
@@ -115,7 +115,7 @@ namespace Nzh.Allen.Service
                     };
                     _children.Add(_tree);
                     tree.children = _children;
-                    GetModuleChildren(treeSelectList, moduleList, _tree, item.Id);
+                    GetMenuChildren(treeSelectList, menuList, _tree, item.Id);
                 }
             }
         }
@@ -124,15 +124,15 @@ namespace Nzh.Allen.Service
         /// </summary>
         /// <param name="roleId">角色ID</param>
         /// <returns></returns>
-        public IEnumerable<MenuModel> GetModuleButtonList(int roleId)
+        public IEnumerable<MenuModel> GetMenuButtonList(int roleId)
         {
             string returnFields = "Id,ParentId,FullName,Icon,SortCode";
             string orderby = "ORDER BY SortCode ASC";
             IEnumerable<MenuModel> list = GetAll(returnFields, orderby);
             foreach (var item in list)
             {
-                item.ModuleButtonHtml = ButtonService.GetButtonListHtmlByRoleIdModuleId(roleId, item.Id);
-                item.IsChecked = RoleAuthorizeService.GetListByRoleIdModuleId(roleId, item.Id).Count() > 0 ? true : false;
+                item.MenuButtonHtml = ButtonService.GetButtonListHtmlByRoleIdMenuId(roleId, item.Id);
+                item.IsChecked = RoleAuthorizeService.GetListByRoleIdMenuId(roleId, item.Id).Count() > 0 ? true : false;
             }
             return list;
         }

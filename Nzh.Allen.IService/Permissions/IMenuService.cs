@@ -12,16 +12,16 @@ namespace Nzh.Allen.IService
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
-        dynamic GetModuleList(int roleId);
+        dynamic GetMenuList(int roleId);
         /// <summary>
         /// Module treeSelect数据列表
         /// </summary>
-        IEnumerable<TreeSelect> GetModuleTreeSelect();
+        IEnumerable<TreeSelect> GetMenuTreeSelect();
         /// <summary>
         /// 获取所有菜单列表及可用按钮权限列表
         /// </summary>
         /// <param name="roleId">角色ID</param>
         /// <returns></returns>
-        IEnumerable<MenuModel> GetModuleButtonList(int roleId);
+        IEnumerable<MenuModel> GetMenuButtonList(int roleId);
     }
 }

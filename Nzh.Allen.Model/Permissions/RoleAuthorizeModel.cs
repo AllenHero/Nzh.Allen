@@ -15,7 +15,7 @@ namespace Nzh.Allen.Model
         /// <summary>
         /// 模块主键
         /// </summary>
-        public int ModuleId { get; set; }
+        public int MenuId { get; set; }
         /// <summary>
         /// 按钮主键
         /// </summary>
