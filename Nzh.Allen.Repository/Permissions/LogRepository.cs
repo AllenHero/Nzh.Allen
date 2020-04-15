@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Nzh.Allen.Repository
 {
-    public class LogonLogRepository : BaseRepository<LogonLogModel>, ILogonLogRepository
+    public class LogRepository : BaseRepository<LogModel>, ILogRepository
     {
 
     }

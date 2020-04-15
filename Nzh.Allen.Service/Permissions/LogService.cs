@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Nzh.Allen.Service
 {
-    public class LogonLogService : BaseService<LogonLogModel>, ILogonLogService
+    public class LogService : BaseService<LogModel>, ILogService
     {
-        public dynamic GetListByFilter(LogonLogModel filter, PageInfo pageInfo)
+        public dynamic GetListByFilter(LogModel filter, PageInfo pageInfo)
         {
             string _where = " where 1=1";
             if (!string.IsNullOrEmpty(filter.Account))
@@ -28,7 +28,7 @@ namespace Nzh.Allen.Service
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public int WriteDbLog(LogonLogModel model, string ip, string iPAddressName)
+        public int WriteDbLog(LogModel model, string ip, string iPAddressName)
         {
             model.IPAddress = ip;
             model.IPAddressName = iPAddressName;

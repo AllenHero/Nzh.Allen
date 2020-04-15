@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Nzh.Allen.IRepository
 {
-    public interface ILogonLogRepository : IBaseRepository<LogonLogModel>
+    public interface ILogRepository : IBaseRepository<LogModel>
     {
 
     }

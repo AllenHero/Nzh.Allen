@@ -7,8 +7,8 @@ using KeyAttribute = Nzh.Allen.Extension.KeyAttribute;
 
 namespace Nzh.Allen.Model
 {
-    [Table("LogonLog")]
-    public class LogonLogModel
+    [Table("Log")]
+    public class LogModel
     {
         /// <summary>
         /// 主键

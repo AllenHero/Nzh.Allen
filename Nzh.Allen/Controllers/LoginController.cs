@@ -14,7 +14,7 @@ namespace Nzh.Allen.Controllers
     {
         public IHttpContextAccessor httpContextAccessor { get; set; }
         public IUserService UserService { get; set; }
-        public ILogonLogService LogonLogService { get; set; }
+        public ILogService LogService { get; set; }
         // GET: Login
         public ActionResult Index()
         {
@@ -29,7 +29,7 @@ namespace Nzh.Allen.Controllers
         [HttpPost]
         public ActionResult LoginOn(string username, string password, string captcha)
         {
-            LogonLogModel logEntity = new LogonLogModel();
+            LogModel logEntity = new LogModel();
             var OperatorProvider = new OperatorProvider(HttpContext);
             logEntity.LogType = DbLogType.Login.ToString();
             try
@@ -57,7 +57,7 @@ namespace Nzh.Allen.Controllers
                     logEntity.Account = userEntity.Account;
                     logEntity.RealName = userEntity.RealName;
                     logEntity.Description = "登陆成功";
-                    LogonLogService.WriteDbLog(logEntity, operatorModel.LoginIPAddress, operatorModel.LoginIPAddressName);
+                    LogService.WriteDbLog(logEntity, operatorModel.LoginIPAddress, operatorModel.LoginIPAddressName);
                     return Content(new AjaxResult { state = ResultType.success.ToString(), message = "登录成功" }.ToJson());
                 }
                 else
@@ -70,7 +70,7 @@ namespace Nzh.Allen.Controllers
                 logEntity.Account = username;
                 logEntity.RealName = username;
                 logEntity.Description = "登录失败，" + ex.Message;
-                LogonLogService.WriteDbLog(logEntity, HttpContext.Connection.RemoteIpAddress.ToString(), HttpContext.Connection.RemoteIpAddress.ToString());
+                LogService.WriteDbLog(logEntity, HttpContext.Connection.RemoteIpAddress.ToString(), HttpContext.Connection.RemoteIpAddress.ToString());
                 return Content(new AjaxResult { state = ResultType.error.ToString(), message = ex.Message }.ToJson());
             }
         }
@@ -78,7 +78,7 @@ namespace Nzh.Allen.Controllers
         public ActionResult LoginOut()
         {
             var OperatorProvider = new OperatorProvider(HttpContext);
-            LogonLogService.WriteDbLog(new LogonLogModel
+            LogService.WriteDbLog(new LogModel
             {
                 LogType = DbLogType.Exit.ToString(),
                 Account = OperatorProvider.GetCurrent().Account,

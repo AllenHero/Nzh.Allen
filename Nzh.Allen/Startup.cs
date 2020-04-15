@@ -115,8 +115,6 @@ namespace Nzh.Allen
                 endpoints.MapAreaControllerRoute(
                      "Permissions_route", "Permissions", "Permissions/{controller=Index}/{action=Index}/{id?}");
                 endpoints.MapAreaControllerRoute(
-                     "Security_route", "Security", "Security/{controller=Index}/{action=Index}/{id?}");
-                endpoints.MapAreaControllerRoute(
                  "Basic_route", "Basic", "Basic/{controller=Index}/{action=Index}/{id?}");
 
             });
